@@ -15,9 +15,9 @@ class PhotosViewModel : ObservableObject {
     var cancellable = Set<AnyCancellable>()
     
     
-    private init(){
+     init(){
         getPhotos()
-    }
+     }
     
     func getPhotos(){
         service.$photos
@@ -25,7 +25,5 @@ class PhotosViewModel : ObservableObject {
                 self?.photos = returnedPhotos
             }
             .store(in: &cancellable)
-        
     }
-    
 }

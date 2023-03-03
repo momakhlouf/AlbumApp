@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Combine
+import Kingfisher
 
 class AlbumsScreenViewController: UIViewController {
 
@@ -16,12 +18,29 @@ class AlbumsScreenViewController: UIViewController {
             imagesCollectionView.register(UINib(nibName: "ImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
         }
     }
-    
+    var cancellable = Set<AnyCancellable>()
     let searchController = UISearchController(searchResultsController: nil)
+    let photosViewModel = PhotosViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchBarConfigure()
+
+
+    }
+
+    
+    func getPhotos(){
+        photosViewModel.$photos
+            .sink { [weak self] _ in
+                self?.imagesCollectionView.reloadData()
+            }
+            .store(in: &cancellable)
+    }
+
+    
+    
+    func searchBarConfigure(){
         searchController.loadViewIfNeeded()
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.enablesReturnKeyAutomatically = false
@@ -31,24 +50,41 @@ class AlbumsScreenViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "write a .. here..."
-
-        // Do any additional setup after loading the view.
     }
-
-
 
 }
 
+
+//MARK: PHOTOS COLLECTION View
 extension AlbumsScreenViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return photosViewModel.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
-        cell.albumImageView.image = UIImage(systemName: "heart")
+        
+        photosViewModel.$photos
+            .sink { photos in
+                cell.configureCell(photo: photos[indexPath.row])
+            }
+            .store(in: &cancellable)
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
+        
+         let imageViewer = ImageViewerViewController()
+//        photosViewModel.$photos
+//            .sink { photos in
+//              //  imageViewer.albumImage = cell.albumImageView
+//            }
+//            .store(in: &cancellable)
+        navigationController?.pushViewController(imageViewer, animated: true)
+
     }
     
     
@@ -61,11 +97,6 @@ extension AlbumsScreenViewController : UISearchBarDelegate {
 
 
 extension AlbumsScreenViewController : UICollectionViewDelegateFlowLayout {
-//            func collectionView(_ collectionView: UICollectionView,
-//                                layout collectionViewLayout: UICollectionViewLayout,
-//                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//            }
 
             func collectionView(_ collectionView: UICollectionView,
                                 layout collectionViewLayout: UICollectionViewLayout,

@@ -15,5 +15,10 @@ class ImagesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configureCell(photo : PhotoModel){
+        albumImageView.kf.setImage(with: URL(string: photo.thumbnailUrl ))
+        
+    }
 
 }

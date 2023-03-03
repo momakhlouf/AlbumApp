@@ -65,6 +65,8 @@ class ProfileViewController: UIViewController {
 
 }
 
+
+
 //MARK: USER ALBUMS TABLEVIEW DELEGATE & DATA SOURCE
 extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,7 +92,12 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
         return 50
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let albumDetailsVC = AlbumsScreenViewController()
+//        albumViewModel.$albums
+//            .sink { [weak self] album in
+//                albumDetailsVC.
+//            }
+        navigationController?.pushViewController(albumDetailsVC, animated: true)
     }
     
 }

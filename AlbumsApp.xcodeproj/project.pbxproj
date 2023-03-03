@@ -13,6 +13,9 @@
 		A890069729B21E9F006F7296 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890069629B21E9F006F7296 /* PhotoModel.swift */; };
 		A890069929B21EDF006F7296 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890069829B21EDF006F7296 /* PhotoService.swift */; };
 		A890069B29B222CA006F7296 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A890069A29B222CA006F7296 /* PhotosViewModel.swift */; };
+		A890069E29B22F5B006F7296 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A890069D29B22F5B006F7296 /* Kingfisher */; };
+		A89006A229B239F8006F7296 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89006A029B239F8006F7296 /* ImageViewerViewController.swift */; };
+		A89006A329B239F8006F7296 /* ImageViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89006A129B239F8006F7296 /* ImageViewerViewController.xib */; };
 		A89097BE29B134EC0037E590 /* AlbumsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097BC29B134EC0037E590 /* AlbumsTableViewCell.swift */; };
 		A89097BF29B134EC0037E590 /* AlbumsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89097BD29B134EC0037E590 /* AlbumsTableViewCell.xib */; };
 		A89097C429B13F400037E590 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097C229B13F400037E590 /* ProfileViewController.swift */; };
@@ -42,6 +45,8 @@
 		A890069629B21E9F006F7296 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		A890069829B21EDF006F7296 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		A890069A29B222CA006F7296 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
+		A89006A029B239F8006F7296 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
+		A89006A129B239F8006F7296 /* ImageViewerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewerViewController.xib; sourceTree = "<group>"; };
 		A89097BC29B134EC0037E590 /* AlbumsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewCell.swift; sourceTree = "<group>"; };
 		A89097BD29B134EC0037E590 /* AlbumsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumsTableViewCell.xib; sourceTree = "<group>"; };
 		A89097C229B13F400037E590 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A890069E29B22F5B006F7296 /* Kingfisher in Frameworks */,
 				A8FBC49329B11DBD00A37C3D /* Moya in Frameworks */,
 				A8FBC49129B11DBD00A37C3D /* CombineMoya in Frameworks */,
 			);
@@ -77,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A890069F29B239C8006F7296 /* ImageViewerView */ = {
+			isa = PBXGroup;
+			children = (
+				A89006A029B239F8006F7296 /* ImageViewerViewController.swift */,
+				A89006A129B239F8006F7296 /* ImageViewerViewController.xib */,
+			);
+			path = ImageViewerView;
+			sourceTree = "<group>";
+		};
 		A89097C029B134F20037E590 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +182,7 @@
 		A8FBC48D29B1108800A37C3D /* AlbumsView */ = {
 			isa = PBXGroup;
 			children = (
+				A890069F29B239C8006F7296 /* ImageViewerView */,
 				A89097C029B134F20037E590 /* ProfileView */,
 				A89097C129B1351F0037E590 /* AlbumDetailsView */,
 			);
@@ -192,6 +208,7 @@
 			packageProductDependencies = (
 				A8FBC49029B11DBD00A37C3D /* CombineMoya */,
 				A8FBC49229B11DBD00A37C3D /* Moya */,
+				A890069D29B22F5B006F7296 /* Kingfisher */,
 			);
 			productName = AlbumsApp;
 			productReference = A8FBC47429B1102100A37C3D /* AlbumsApp.app */;
@@ -223,6 +240,7 @@
 			mainGroup = A8FBC46B29B1102100A37C3D;
 			packageReferences = (
 				A8FBC48F29B11DBD00A37C3D /* XCRemoteSwiftPackageReference "Moya" */,
+				A890069C29B22F5B006F7296 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A8FBC47529B1102100A37C3D /* Products */;
 			projectDirPath = "";
@@ -240,6 +258,7 @@
 			files = (
 				A89097C529B13F400037E590 /* ProfileViewController.xib in Resources */,
 				A8FBC49D29B12F0A00A37C3D /* AlbumsScreenViewController.xib in Resources */,
+				A89006A329B239F8006F7296 /* ImageViewerViewController.xib in Resources */,
 				A89097BF29B134EC0037E590 /* AlbumsTableViewCell.xib in Resources */,
 				A89097C729B148AA0037E590 /* Main.storyboard in Resources */,
 				A8FBC48429B1102200A37C3D /* LaunchScreen.storyboard in Resources */,
@@ -255,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89006A229B239F8006F7296 /* ImageViewerViewController.swift in Sources */,
 				A890069329B1FD09006F7296 /* AlbumService.swift in Sources */,
 				A89097D429B1DC0A0037E590 /* UsersViewModel.swift in Sources */,
 				A890069129B1FC52006F7296 /* AlbumsModel.swift in Sources */,
@@ -417,6 +437,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,6 +465,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,6 +503,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A890069C29B22F5B006F7296 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A8FBC48F29B11DBD00A37C3D /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -492,6 +522,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A890069D29B22F5B006F7296 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A890069C29B22F5B006F7296 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		A8FBC49029B11DBD00A37C3D /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A8FBC48F29B11DBD00A37C3D /* XCRemoteSwiftPackageReference "Moya" */;

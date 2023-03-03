@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func toprofile(_ sender: Any) {
-        let profile = ProfileViewController()
+        let profile = ImageViewerViewController() //ProfileViewController()
         navigationController?.pushViewController(profile, animated: true)
     }
     
