@@ -21,4 +21,16 @@ class AlbumsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configureCell(with album : AlbumModel){
+        albumName.text = album.title
+    }
+//    
+  //  func configureCell(with user : UserModel){
+//        albumName.text = user.name
+//    }
+//
+    
+    
+    
+     
 }
