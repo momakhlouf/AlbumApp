@@ -48,7 +48,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
                   endingLineNumber = "43"
-                  offsetFromSymbolStart = "1936">
+                  offsetFromSymbolStart = "1664">
                </Location>
                <Location
                   uuid = "54CC7ADB-ED90-4B01-9894-868E20721C51 - d037c2dd920fc7ac"
@@ -143,7 +143,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
                   endingLineNumber = "38"
-                  offsetFromSymbolStart = "2004">
+                  offsetFromSymbolStart = "1732">
                </Location>
                <Location
                   uuid = "FFF1F734-24EA-45CD-8FF5-877D4459DDE0 - d037c2dd920fc74f"
@@ -205,8 +205,8 @@
             filePath = "AlbumsApp/AlbumsView/ImageViewerView/ImageViewerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

@@ -20,6 +20,7 @@ class AlbumsViewModel : ObservableObject {
         
     }
     
+    
     func getAlbums(){
         service.$albums
             .sink { completion in

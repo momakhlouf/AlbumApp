@@ -24,9 +24,11 @@
                                     <action selector="toprofile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RBU-h1-Tae"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXj-xW-l6h">
-                                <rect key="frame" x="63" y="581" width="266" height="119"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXj-xW-l6h">
+                                <rect key="frame" x="8" y="473.33333333333326" width="377" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="70f-Py-q2a"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -35,6 +37,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="AXj-xW-l6h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Q8f-vl-oWR"/>
+                            <constraint firstItem="AXj-xW-l6h" firstAttribute="top" secondItem="34q-kJ-tLu" secondAttribute="bottom" constant="30" id="RVD-dR-Eqa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AXj-xW-l6h" secondAttribute="trailing" constant="8" id="UxF-uF-vAU"/>
                             <constraint firstItem="34q-kJ-tLu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XPN-EC-HPP"/>
                             <constraint firstItem="34q-kJ-tLu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xeR-zW-Hhk"/>
                         </constraints>
@@ -53,8 +58,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1UL-pR-cI0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="60s-JS-Arq">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="60s-JS-Arq">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

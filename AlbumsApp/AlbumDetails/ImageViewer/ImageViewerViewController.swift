@@ -18,12 +18,11 @@ class ImageViewerViewController: UIViewController {
 
     @IBOutlet weak var albumImage: UIImageView!
 
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //albumImage.image = UIImage(named: "heart.fill")
+     //   albumImage.image = UIImage(named: "heart")
         setShareButton()
     
     }

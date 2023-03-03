@@ -10,7 +10,7 @@ import Combine
 import Kingfisher
 
 class AlbumsScreenViewController: UIViewController {
-
+    
     @IBOutlet weak var imagesCollectionView: UICollectionView!{
         didSet{
             imagesCollectionView.dataSource = self
@@ -21,23 +21,30 @@ class AlbumsScreenViewController: UIViewController {
     var cancellable = Set<AnyCancellable>()
     let searchController = UISearchController(searchResultsController: nil)
     let photosViewModel = PhotosViewModel()
+    var filteredPhoto : [PhotoModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Albums"
         searchBarConfigure()
-
-
+        print( " aaa\(filteredPhoto.first?.title)")
+        getPhotos()
     }
-
+    
+    
     
     func getPhotos(){
         photosViewModel.$photos
-            .sink { [weak self] _ in
+            .sink { [weak self] returnedPhotos in
+                self?.filteredPhoto = returnedPhotos
                 self?.imagesCollectionView.reloadData()
             }
             .store(in: &cancellable)
+        
+        print("sss \(self.filteredPhoto.count)")
+        
     }
-
+    
     
     
     func searchBarConfigure(){
@@ -49,27 +56,28 @@ class AlbumsScreenViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "write a .. here..."
+        searchController.searchBar.placeholder = "Search by title here..."
     }
-
+    
 }
 
 
 //MARK: PHOTOS COLLECTION View
 extension AlbumsScreenViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosViewModel.photos.count
+        return filteredPhoto.count  // photosViewModel.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
+        cell.configureCell(photo: filteredPhoto[indexPath.row])
         
-        photosViewModel.$photos
-            .sink { photos in
-                cell.configureCell(photo: photos[indexPath.row])
-            }
-            .store(in: &cancellable)
+        //        photosViewModel.$photos
+        //            .sink { photos in
+        //                cell.configureCell(photo: photos[indexPath.row])
+        //            }
+        //            .store(in: &cancellable)
         return cell
         
     }
@@ -77,36 +85,50 @@ extension AlbumsScreenViewController : UICollectionViewDelegate , UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
         
-         let imageViewer = ImageViewerViewController()
-//        photosViewModel.$photos
-//            .sink { photos in
-//              //  imageViewer.albumImage = cell.albumImageView
-//            }
-//            .store(in: &cancellable)
+        let imageViewer = ImageViewerViewController()
+        //        photosViewModel.$photos
+        //            .sink { photos in
+        //              //  imageViewer.albumImage = cell.albumImageView
+        //            }
+        //            .store(in: &cancellable)
         navigationController?.pushViewController(imageViewer, animated: true)
-
+        
     }
     
+ 
     
 }
 
 
 extension AlbumsScreenViewController : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredPhoto = []
+        if searchText == "" {
+            filteredPhoto = photosViewModel.photos
+        }
+        
+        for photo in photosViewModel.photos {
+            if photo.title.uppercased().contains(searchText.uppercased()){
+                filteredPhoto.append(photo)
+            }
+        }
+        self.imagesCollectionView.reloadData()
+    }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        filteredPhoto = photosViewModel.photos
+        
+        imagesCollectionView.reloadData()
+    }
 }
-
 
 extension AlbumsScreenViewController : UICollectionViewDelegateFlowLayout {
 
-            func collectionView(_ collectionView: UICollectionView,
-                                layout collectionViewLayout: UICollectionViewLayout,
-                                minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-                return 1.0
-            }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        return CGSize(width: (collectionView.frame.width  / 3) - 6, height: (collectionView.frame.width  / 3) - 6)
+    }
 
-            func collectionView(_ collectionView: UICollectionView, layout
-                collectionViewLayout: UICollectionViewLayout,
-                                minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-                return 1.0
-            }
-        }
+    }
+

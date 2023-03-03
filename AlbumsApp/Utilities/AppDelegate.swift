@@ -14,6 +14,8 @@ var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        UINavigationBar.appearance().tintColor = .label
+
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        let mainVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
 //        let nav = UINavigationController(rootViewController: mainVC)
@@ -22,6 +24,8 @@ var window: UIWindow?
         return true
     }
 
+  
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

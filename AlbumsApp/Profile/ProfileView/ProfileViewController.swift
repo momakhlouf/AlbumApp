@@ -9,6 +9,7 @@ import UIKit
 import Combine
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var userView: UIView!
     
     let userViewModel =  UsersViewModel()
     let albumViewModel = AlbumsViewModel()
@@ -26,6 +27,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    
+    
     #warning(" WHY WILL APPEAR ?")
     override func viewWillAppear(_ animated: Bool) {
         fetchUsers()
@@ -33,8 +36,14 @@ class ProfileViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Profile"
+        userView.makeCornerRauisView()
             fetchUsers()
            fetchAlbums()
+        
+        userName.addLeading(image: UIImage(named: "sea") ?? UIImage(), text: " Verified ")
+
+        
     }
     
     //MARK: FETCH USER FROM VIEW MODEL USING COMBINE
@@ -43,11 +52,13 @@ class ProfileViewController: UIViewController {
         userViewModel.$users
             .sink { [weak self] returnedUsers in
                 self?.albumTableView.reloadData()
-
-                self?.userName.text = returnedUsers.first?.name
-                self?.userAddress.text = "\(returnedUsers.first?.address.city ?? "")  \(returnedUsers.first?.address.street ?? "") "
-                print("count users\(self?.userViewModel.users.count)")
-
+                let randomUser = returnedUsers.randomElement()
+                
+                //TO MAKE AN ICON WITHIN LABEL.
+                self?.userName.addLeading(image: UIImage(systemName: "person.fill")!, text: "  \(randomUser?.name ?? "")")
+                self?.userAddress.addLeading(image: UIImage(systemName: "house.fill")!, text: " \(randomUser?.address.city ?? ""), \(randomUser?.address.street ?? "")")
+               // self?.userName.text = randomUser?.name
+                //self?.userAddress.text = "\(randomUser?.address.city ?? ""), \(randomUser?.address.street ?? "")"
             }
             .store(in: &cancellable)
     }
@@ -57,12 +68,9 @@ class ProfileViewController: UIViewController {
         albumViewModel.$albums
             .sink { [weak self] returnedAlbums in
                 self?.albumTableView.reloadData()
-                print("count album\(self?.albumViewModel.albums)")
-
             }
             .store(in: &cancellable)
     }
-
 }
 
 
@@ -78,6 +86,7 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = albumTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumsTableViewCell
+        cell.selectionStyle = .none
         albumViewModel.$albums
             .sink { albums  in
                 cell.configureCell(with: albums[indexPath.row])
@@ -89,7 +98,7 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let albumDetailsVC = AlbumsScreenViewController()
@@ -101,3 +110,6 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
 }
+
+
+

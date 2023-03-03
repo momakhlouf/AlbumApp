@@ -14,10 +14,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+      //  label.addLeading(image: UIImage(systemName: "person.fill")!, text: "dddd")
     }
 
     @IBAction func toprofile(_ sender: Any) {
-        let profile = ImageViewerViewController() //ProfileViewController()
+        let profile = ProfileViewController()
         navigationController?.pushViewController(profile, animated: true)
     }
     
