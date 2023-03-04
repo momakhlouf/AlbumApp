@@ -14,11 +14,12 @@ class UserService {
     static let instance = UserService()
     
     @Published var users : [UserModel] = []
-    
+    @Published var user : UserModel? = nil 
+
     var cancellable = Set<AnyCancellable>()
     
     private init() {
-        getUsers()
+         getUsers()
     }
     
     func getUsers(){
@@ -38,11 +39,14 @@ class UserService {
                 .sink { completion in
                     switch completion{
                     case .finished : break
-                    case .failure(let error) : print(error)
+                    case .failure(let error) :
+                        DispatchQueue.main.async {
+                            Alert.displayAlert(title: "Error", message: error.localizedDescription)
+                        }
                     }
                 } receiveValue: { [weak self] returnedUsers in
-                    self?.users = returnedUsers
-                  //  print("service \(returnedUsers)")
+                    // self?.users = returnedUsers
+                    self?.user = returnedUsers.randomElement()!
                 }
                 .store(in: &cancellable)
         }
@@ -50,29 +54,3 @@ class UserService {
 }
 
 
-//enum UserService {
-//    case readUsers
-//}
-//extension UserService : TargetType {
-//    var baseURL: URL {
-//        return URL(string: "https://jsonplaceholder.typicode.com")!
-//    }
-//     
-//    var path: String {
-//        return "/users"
-//    }
-//    
-//    var method: Moya.Method {
-//        return .get
-//    }
-//    
-//    var task: Moya.Task {
-//        return .requestPlain
-//    }
-//    
-//    var headers: [String : String]?{
-//     return ["",""]
-//    }
-//    
-//    
-//}

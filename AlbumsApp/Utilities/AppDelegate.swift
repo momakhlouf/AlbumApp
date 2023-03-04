@@ -21,6 +21,7 @@ var window: UIWindow?
 //        let nav = UINavigationController(rootViewController: mainVC)
 //        window?.rootViewController = nav
 //        window?.makeKeyAndVisible()
+        
         return true
     }
 

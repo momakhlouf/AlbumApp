@@ -23,17 +23,17 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="F57-hB-lcY">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hx2-i0-ZhC">
-                            <rect key="frame" x="0.0" y="2" width="393" height="849"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hx2-i0-ZhC">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="width" secondItem="Zax-TN-y8K" secondAttribute="width" id="6iQ-ST-yWk"/>
-                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="leading" secondItem="Kmy-Vs-BsL" secondAttribute="leading" id="7cI-Gb-2YN"/>
-                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="bottom" secondItem="Kmy-Vs-BsL" secondAttribute="bottom" constant="852" id="IyO-hh-zsE"/>
-                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="height" secondItem="Zax-TN-y8K" secondAttribute="height" id="RHo-9p-ZlI"/>
-                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="trailing" secondItem="Kmy-Vs-BsL" secondAttribute="trailing" constant="393" id="h4v-go-OdM"/>
-                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="top" secondItem="Kmy-Vs-BsL" secondAttribute="top" constant="1.7763568394002505e-15" id="ohT-Xv-R1z"/>
+                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="height" secondItem="Zax-TN-y8K" secondAttribute="height" id="IUH-i5-Rqu"/>
+                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="width" secondItem="Zax-TN-y8K" secondAttribute="width" id="SUa-er-RRh"/>
+                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="top" secondItem="Kmy-Vs-BsL" secondAttribute="top" id="cKs-Ye-Tba"/>
+                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="bottom" secondItem="Kmy-Vs-BsL" secondAttribute="bottom" id="iKo-zZ-b8e"/>
+                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="trailing" secondItem="Kmy-Vs-BsL" secondAttribute="trailing" id="rTE-vH-nfX"/>
+                        <constraint firstItem="hx2-i0-ZhC" firstAttribute="leading" secondItem="Kmy-Vs-BsL" secondAttribute="leading" id="tGC-aA-lee"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="Kmy-Vs-BsL"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="Zax-TN-y8K"/>
@@ -42,16 +42,15 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="F57-hB-lcY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QrR-C2-tQq"/>
-                <constraint firstItem="F57-hB-lcY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Y45-Sj-Qsk"/>
-                <constraint firstAttribute="bottom" secondItem="F57-hB-lcY" secondAttribute="bottom" id="ns8-2E-JPf"/>
-                <constraint firstItem="F57-hB-lcY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="zlb-A6-RdJ"/>
+                <constraint firstItem="F57-hB-lcY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Pv-SI-eIY"/>
+                <constraint firstItem="F57-hB-lcY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T1y-zK-sjL"/>
+                <constraint firstItem="F57-hB-lcY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dYs-ep-8rI"/>
+                <constraint firstAttribute="bottom" secondItem="F57-hB-lcY" secondAttribute="bottom" id="pvN-lD-Bil"/>
             </constraints>
             <point key="canvasLocation" x="43.511450381679388" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
-        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

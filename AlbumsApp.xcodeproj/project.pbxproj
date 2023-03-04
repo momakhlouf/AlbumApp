@@ -17,6 +17,8 @@
 		A89006A229B239F8006F7296 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89006A029B239F8006F7296 /* ImageViewerViewController.swift */; };
 		A89006A329B239F8006F7296 /* ImageViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89006A129B239F8006F7296 /* ImageViewerViewController.xib */; };
 		A89006A629B2A245006F7296 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89006A529B2A245006F7296 /* Extensions.swift */; };
+		A89006AD29B2ABC4006F7296 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89006AC29B2ABC4006F7296 /* Alert.swift */; };
+		A89006B329B33C18006F7296 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89006B229B33C18006F7296 /* UserServices.swift */; };
 		A89097BE29B134EC0037E590 /* AlbumsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097BC29B134EC0037E590 /* AlbumsTableViewCell.swift */; };
 		A89097BF29B134EC0037E590 /* AlbumsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89097BD29B134EC0037E590 /* AlbumsTableViewCell.xib */; };
 		A89097C429B13F400037E590 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097C229B13F400037E590 /* ProfileViewController.swift */; };
@@ -24,7 +26,7 @@
 		A89097C729B148AA0037E590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89097C629B148AA0037E590 /* Main.storyboard */; };
 		A89097C929B148C40037E590 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097C829B148C40037E590 /* ViewController.swift */; };
 		A89097CC29B151020037E590 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097CB29B151020037E590 /* UserService.swift */; };
-		A89097CE29B156F70037E590 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097CD29B156F70037E590 /* NetworkProvider.swift */; };
+		A89097CE29B156F70037E590 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097CD29B156F70037E590 /* UserProvider.swift */; };
 		A89097D129B161620037E590 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097CF29B161620037E590 /* ImagesCollectionViewCell.swift */; };
 		A89097D229B161620037E590 /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89097D029B161620037E590 /* ImagesCollectionViewCell.xib */; };
 		A89097D429B1DC0A0037E590 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89097D329B1DC0A0037E590 /* UsersViewModel.swift */; };
@@ -49,6 +51,8 @@
 		A89006A029B239F8006F7296 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		A89006A129B239F8006F7296 /* ImageViewerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewerViewController.xib; sourceTree = "<group>"; };
 		A89006A529B2A245006F7296 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A89006AC29B2ABC4006F7296 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		A89006B229B33C18006F7296 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		A89097BC29B134EC0037E590 /* AlbumsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewCell.swift; sourceTree = "<group>"; };
 		A89097BD29B134EC0037E590 /* AlbumsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumsTableViewCell.xib; sourceTree = "<group>"; };
 		A89097C229B13F400037E590 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +60,7 @@
 		A89097C629B148AA0037E590 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A89097C829B148C40037E590 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A89097CB29B151020037E590 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		A89097CD29B156F70037E590 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		A89097CD29B156F70037E590 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		A89097CF29B161620037E590 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		A89097D029B161620037E590 /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		A89097D329B1DC0A0037E590 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				A8FBC47729B1102100A37C3D /* AppDelegate.swift */,
 				A8FBC47929B1102100A37C3D /* SceneDelegate.swift */,
 				A89006A529B2A245006F7296 /* Extensions.swift */,
+				A89006AC29B2ABC4006F7296 /* Alert.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -157,7 +162,8 @@
 		A89097CA29B150E00037E590 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				A89097CD29B156F70037E590 /* NetworkProvider.swift */,
+				A89097CD29B156F70037E590 /* UserProvider.swift */,
+				A89006B229B33C18006F7296 /* UserServices.swift */,
 				A89097CB29B151020037E590 /* UserService.swift */,
 				A890069229B1FD09006F7296 /* AlbumService.swift */,
 				A890069829B21EDF006F7296 /* PhotoService.swift */,
@@ -188,8 +194,6 @@
 				A89097CA29B150E00037E590 /* Networking */,
 				A89006A829B2A2E1006F7296 /* Profile */,
 				A8FBC48D29B1108800A37C3D /* AlbumDetails */,
-				A8FBC48C29B1106C00A37C3D /* AlbumsViewModel */,
-				A8FBC48B29B1105C00A37C3D /* AlbumsModel */,
 				A89097C829B148C40037E590 /* ViewController.swift */,
 				A8FBC48029B1102200A37C3D /* Assets.xcassets */,
 				A8FBC48229B1102200A37C3D /* LaunchScreen.storyboard */,
@@ -218,8 +222,10 @@
 		A8FBC48D29B1108800A37C3D /* AlbumDetails */ = {
 			isa = PBXGroup;
 			children = (
-				A890069F29B239C8006F7296 /* ImageViewer */,
+				A8FBC48B29B1105C00A37C3D /* AlbumsModel */,
 				A89097C129B1351F0037E590 /* AlbumDetailsView */,
+				A8FBC48C29B1106C00A37C3D /* AlbumsViewModel */,
+				A890069F29B239C8006F7296 /* ImageViewer */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
@@ -317,7 +323,7 @@
 				A89097C929B148C40037E590 /* ViewController.swift in Sources */,
 				A8FBC47829B1102100A37C3D /* AppDelegate.swift in Sources */,
 				A89006A629B2A245006F7296 /* Extensions.swift in Sources */,
-				A89097CE29B156F70037E590 /* NetworkProvider.swift in Sources */,
+				A89097CE29B156F70037E590 /* UserProvider.swift in Sources */,
 				A890069B29B222CA006F7296 /* PhotosViewModel.swift in Sources */,
 				A8FBC49929B12D6000A37C3D /* UserModel.swift in Sources */,
 				A890069929B21EDF006F7296 /* PhotoService.swift in Sources */,
@@ -325,8 +331,10 @@
 				A89097BE29B134EC0037E590 /* AlbumsTableViewCell.swift in Sources */,
 				A89097C429B13F400037E590 /* ProfileViewController.swift in Sources */,
 				A890069529B20D59006F7296 /* AlbumsViewModel.swift in Sources */,
+				A89006B329B33C18006F7296 /* UserServices.swift in Sources */,
 				A8FBC47A29B1102100A37C3D /* SceneDelegate.swift in Sources */,
 				A89097D129B161620037E590 /* ImagesCollectionViewCell.swift in Sources */,
+				A89006AD29B2ABC4006F7296 /* Alert.swift in Sources */,
 				A89097CC29B151020037E590 /* UserService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

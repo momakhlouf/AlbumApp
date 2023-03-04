@@ -20,6 +20,7 @@ class PhotosViewModel : ObservableObject {
      }
     
     func getPhotos(){
+        service.getPhotos()
         service.$photos
             .sink { [weak self] returnedPhotos in
                 self?.photos = returnedPhotos

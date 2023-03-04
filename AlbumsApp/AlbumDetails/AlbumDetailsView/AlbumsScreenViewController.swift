@@ -27,11 +27,8 @@ class AlbumsScreenViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Albums"
         searchBarConfigure()
-        print( " aaa\(filteredPhoto.first?.title)")
         getPhotos()
     }
-    
-    
     
     func getPhotos(){
         photosViewModel.$photos
@@ -40,25 +37,7 @@ class AlbumsScreenViewController: UIViewController {
                 self?.imagesCollectionView.reloadData()
             }
             .store(in: &cancellable)
-        
-        print("sss \(self.filteredPhoto.count)")
-        
     }
-    
-    
-    
-    func searchBarConfigure(){
-        searchController.loadViewIfNeeded()
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.enablesReturnKeyAutomatically = false
-        searchController.searchBar.returnKeyType = UIReturnKeyType.done
-        definesPresentationContext = true
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search by title here..."
-    }
-    
 }
 
 
@@ -83,24 +62,42 @@ extension AlbumsScreenViewController : UICollectionViewDelegate , UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
+//        let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
+        let imageVC = ImageViewerViewController()
+        imageVC.imageUrl =  filteredPhoto[indexPath.row].thumbnailUrl
+        navigationController?.pushViewController(imageVC, animated: true)
+
         
-        let imageViewer = ImageViewerViewController()
+      //  let imageViewer = ImageViewerViewController()
         //        photosViewModel.$photos
         //            .sink { photos in
         //              //  imageViewer.albumImage = cell.albumImageView
         //            }
         //            .store(in: &cancellable)
-        navigationController?.pushViewController(imageViewer, animated: true)
+      //  navigationController?.pushViewController(imageViewer, animated: true)
         
     }
     
- 
+    
     
 }
 
-
+//MARK: SEARCHBAR DELEGATE
 extension AlbumsScreenViewController : UISearchBarDelegate {
+    
+    
+    func searchBarConfigure(){
+        searchController.loadViewIfNeeded()
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        searchController.searchBar.returnKeyType = UIReturnKeyType.done
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search by title here..."
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredPhoto = []
         if searchText == "" {
@@ -123,12 +120,13 @@ extension AlbumsScreenViewController : UISearchBarDelegate {
     }
 }
 
+//MARK: COLLECTION VIEW LAYOUT
 extension AlbumsScreenViewController : UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: (collectionView.frame.width  / 3) - 6, height: (collectionView.frame.width  / 3) - 6)
     }
-
-    }
+    
+}
 

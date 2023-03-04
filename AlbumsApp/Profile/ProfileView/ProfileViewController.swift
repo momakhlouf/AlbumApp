@@ -7,15 +7,16 @@
 
 import UIKit
 import Combine
+import Moya
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var userView: UIView!
     
-    let userViewModel =  UsersViewModel()
+    let userViewModel = UsersViewModel()
     let albumViewModel = AlbumsViewModel()
+ 
     
     var cancellable = Set<AnyCancellable>()
-    
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userAddress: UILabel!
     
@@ -26,45 +27,52 @@ class ProfileViewController: UIViewController {
             albumTableView.register(UINib(nibName: "AlbumsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         }
     }
+
     
-    
-    
-    #warning(" WHY WILL APPEAR ?")
-    override func viewWillAppear(_ animated: Bool) {
-        fetchUsers()
-        fetchAlbums()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
+        
         self.title = "Profile"
         userView.makeCornerRauisView()
-            fetchUsers()
-           fetchAlbums()
+        fetchUsers()
+        fetchAlbums()
         
-        userName.addLeading(image: UIImage(named: "sea") ?? UIImage(), text: " Verified ")
+//        provider.$users
+//            .sink { completion in
+//                print("comp\(completion)")
+//            } receiveValue: { [weak self] newUsers in
+//                print("newUsersss\(newUsers)")
+//            }
+//            .store(in: &cancellable)
 
+    
         
     }
+
     
     //MARK: FETCH USER FROM VIEW MODEL USING COMBINE
     func fetchUsers(){
-        userViewModel.getUsers()
-        userViewModel.$users
-            .sink { [weak self] returnedUsers in
+        userViewModel.getRandomUser()
+        userViewModel.$user
+            .sink { [weak self] randomUser in
                 self?.albumTableView.reloadData()
-                let randomUser = returnedUsers.randomElement()
-                
+//                let randomUser = returnedUsers.randomElement()
+//                self?.randomUserID = randomUser?.id ?? 1
                 //TO MAKE AN ICON WITHIN LABEL.
+                self?.albumViewModel.getAlbums(user: randomUser ?? UserModel(id: 1, name: "", username: "", email: "", address: Address(street: "", suite: "", city: "", zipcode: ""), phone: "", website: ""))
+
                 self?.userName.addLeading(image: UIImage(systemName: "person.fill")!, text: "  \(randomUser?.name ?? "")")
                 self?.userAddress.addLeading(image: UIImage(systemName: "house.fill")!, text: " \(randomUser?.address.city ?? ""), \(randomUser?.address.street ?? "")")
-               // self?.userName.text = randomUser?.name
+                // self?.userName.text = randomUser?.name
                 //self?.userAddress.text = "\(randomUser?.address.city ?? ""), \(randomUser?.address.street ?? "")"
             }
             .store(in: &cancellable)
     }
     
     func fetchAlbums(){
-       albumViewModel.getAlbums()
         albumViewModel.$albums
             .sink { [weak self] returnedAlbums in
                 self?.albumTableView.reloadData()
@@ -78,7 +86,7 @@ class ProfileViewController: UIViewController {
 //MARK: USER ALBUMS TABLEVIEW DELEGATE & DATA SOURCE
 extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return albumViewModel.albums.count
     }
     
@@ -90,10 +98,9 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
         albumViewModel.$albums
             .sink { albums  in
                 cell.configureCell(with: albums[indexPath.row])
-                print(" count :\(albums.count)")
             }
             .store(in: &cancellable)
-  
+        
         return cell
     }
     
@@ -102,11 +109,12 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let albumDetailsVC = AlbumsScreenViewController()
-//        albumViewModel.$albums
-//            .sink { [weak self] album in
-//                albumDetailsVC.
-//            }
         navigationController?.pushViewController(albumDetailsVC, animated: true)
+
+        //        albumViewModel.$albums
+        //            .sink { [weak self] album in
+        //                albumDetailsVC.
+        //            }
     }
     
 }

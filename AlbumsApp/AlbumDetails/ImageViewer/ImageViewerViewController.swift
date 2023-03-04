@@ -6,79 +6,59 @@
 //
 
 import UIKit
-
+import Kingfisher
 class ImageViewerViewController: UIViewController {
     
-    
+    var imageUrl : String = ""
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
             scrollView.delegate = self
         }
     }
-
+    
     @IBOutlet weak var albumImage: UIImageView!
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = false
         
-     //   albumImage.image = UIImage(named: "heart")
+        albumImage.kf.setImage(with: URL(string: imageUrl ))
         setShareButton()
-    
-    }
-
-    func setShareButton(){
-        let shareButton = UIBarButtonItem()
-        shareButton.image = UIImage(systemName: "square.and.arrow.up.fill")
-        shareButton.action = #selector(shareImage)
-        shareButton.target = self
-        navigationItem.rightBarButtonItems = [shareButton]
-    }
-        
-    @objc func shareImage(){
-        
-        let firstActivityItem = "Share your photo with "
-        if let image = albumImage.image {
-            // let image : UIImage =  albumImage.image
-            let activityViewController : UIActivityViewController = UIActivityViewController(
-                activityItems: [firstActivityItem, image], applicationActivities: nil)
-        
-        
-        
-        // This line remove the arrow of the popover to show in iPad
-        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
-        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-        
-        // Pre-configuring activity items
-        activityViewController.activityItemsConfiguration = [
-            UIActivity.ActivityType.message
-        ] as? UIActivityItemsConfigurationReading
-        
-        // Anything you want to exclude
-        activityViewController.excludedActivityTypes = [
-            UIActivity.ActivityType.postToWeibo,
-            UIActivity.ActivityType.print,
-            UIActivity.ActivityType.assignToContact,
-            UIActivity.ActivityType.saveToCameraRoll,
-            UIActivity.ActivityType.addToReadingList,
-            UIActivity.ActivityType.postToFlickr,
-            UIActivity.ActivityType.postToVimeo,
-            UIActivity.ActivityType.postToTencentWeibo,
-            UIActivity.ActivityType.postToFacebook
-        ]
-        
-        activityViewController.isModalInPresentation = true
-        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 
-}
-
+//MARK: ZOOM IMAGE
 extension ImageViewerViewController : UIScrollViewDelegate {
- 
+    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return albumImage
     }
 }
 
+//MARK: SHARE IMAGE
+extension ImageViewerViewController {
+    
+    
+    func setShareButton(){
+        let shareButton = UIBarButtonItem()
+        shareButton.image = UIImage(systemName: "square.and.arrow.up")
+        shareButton.action = #selector(shareImage)
+        shareButton.target = self
+        navigationItem.rightBarButtonItems = [shareButton]
+    }
+    
+    
+    @objc func shareImage(){
+        let title = "Share your photo with : "
+        if let image = albumImage.image {
+            let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [title , image], applicationActivities: nil)
+            activityViewController.isModalInPresentation = true
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+    }
 
+}

@@ -13,14 +13,15 @@ class PhotoService{
      static let instance = PhotoService()
     
     @Published var photos : [PhotoModel] = []
+    
     var cancellable = Set<AnyCancellable>()
     
-    private init(){
-        getPhotos()
-    }
+//    private init(){
+//        getPhotos()
+//    }
     
     func getPhotos(){
-        if let url = URL(string: "https://jsonplaceholder.typicode.com/photos"){
+        if let url = URL(string: "https://jsonplaceholder.typicode.com/albums/1/photos"){
             URLSession.shared.dataTaskPublisher(for: url)
                 .subscribe(on: DispatchQueue.global(qos: .background))
                 .receive(on: DispatchQueue.main)
@@ -36,7 +37,10 @@ class PhotoService{
                 .sink { completion in
                     switch completion{
                     case .finished : break
-                    case .failure(let error) : print(error)
+                    case .failure(let error) :
+                        DispatchQueue.main.async {
+                            Alert.displayAlert(title: "Error", message: error.localizedDescription)
+                        }
                     }
                 } receiveValue: { [weak self] returnedPhotos in
                     self?.photos = returnedPhotos
