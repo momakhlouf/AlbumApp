@@ -18,13 +18,10 @@ class ImageViewerViewController: UIViewController {
     
     @IBOutlet weak var albumImage: UIImageView!
     
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
+        
         
         albumImage.kf.setImage(with: URL(string: imageUrl ))
         setShareButton()

@@ -8,6 +8,7 @@
 import Foundation
 
 struct AlbumModel: Codable {
-    let userId, id: Int
-    let title: String
+    let userId: Int?
+    let id: Int?
+    let title: String?
 }

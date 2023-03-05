@@ -15,22 +15,18 @@ class AlbumsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // setView()
-        cellView.makeCornerRauisView()
+        cellView.makeShadow()
         cellView.layer.cornerRadius = 10
         // Initialization code
-        
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        
-        // Configure the view for the selected state
     }
     
     func configureCell(with album : AlbumModel){
         albumName.text = album.title
+        print(album.title)
     }
 }
 

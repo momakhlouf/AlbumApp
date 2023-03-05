@@ -17,7 +17,7 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(photo : PhotoModel){
-        albumImageView.kf.setImage(with: URL(string: photo.thumbnailUrl ))
+        albumImageView.kf.setImage(with: URL(string: photo.thumbnailUrl ?? "" ))
         
     }
 
