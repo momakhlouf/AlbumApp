@@ -10,7 +10,7 @@ import Combine
 import Moya
 import CombineMoya
 
-class PhotosViewModel : ObservableObject {
+class AlbumDetailsViewModel : ObservableObject {
     
     @Published var photos : [PhotoModel] = []
     @Published var filteredPhoto : [PhotoModel] = []
@@ -24,6 +24,18 @@ class PhotosViewModel : ObservableObject {
     init(albumId: Int){
         self.albumId = albumId
     }
+    
+    
+    
+    func getCountOfPhotos() -> Int{
+        return filteredPhoto.count
+    }
+    
+    func getDataOfPhotos() -> [PhotoModel]{
+        return filteredPhoto
+    }
+    
+    
     
     
     func getPhotos(){

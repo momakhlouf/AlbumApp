@@ -13,7 +13,6 @@ extension UIView{
     
     func makeShadow(){
         layer.masksToBounds = false
-
         layer.shadowRadius = 4
         layer.shadowOpacity = 1.0
         layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -21,5 +20,3 @@ extension UIView{
         layer.masksToBounds = false
     }
 }
-
-

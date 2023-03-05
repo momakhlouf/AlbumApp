@@ -9,12 +9,12 @@ import UIKit
 
 class AppRouter {
     static func createProfileScene() -> UIViewController {
-        let viewModel = UsersViewModel()
+        let viewModel = ProfileViewModel()
         return ProfileViewController(viewModel: viewModel)
     }
 
     static func createAlbumsScene(albumId: Int) -> UIViewController {
-        let viewModel = PhotosViewModel(albumId: albumId)
+        let viewModel = AlbumDetailsViewModel(albumId: albumId)
         return AlbumsDetailsViewController(viewModel: viewModel)
     }
 }

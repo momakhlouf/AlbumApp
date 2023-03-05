@@ -20,10 +20,10 @@ class AlbumsDetailsViewController: UIViewController {
     var subscription  : AnyCancellable?
     var cancellable = Set<AnyCancellable>()
     let searchController = UISearchController(searchResultsController: nil)
-    let viewModel: PhotosViewModel
+    let viewModel: AlbumDetailsViewModel
     
-    
-    public init(viewModel: PhotosViewModel) {
+
+    public init(viewModel: AlbumDetailsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,7 +36,7 @@ class AlbumsDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Albums"
-       
+  
         searchBarConfigure()
         setupViewModelBindings()
         setupCollectionView()
@@ -44,6 +44,11 @@ class AlbumsDetailsViewController: UIViewController {
     }
 }
 
+
+func setUpEmptyView(){
+    
+  
+}
 
 //MARK: Configurations
 private extension AlbumsDetailsViewController {
@@ -87,19 +92,21 @@ private extension AlbumsDetailsViewController {
 }
 
 
-
 //MARK: PHOTOS COLLECTION View
 extension AlbumsDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
+    func emptyCollectionView(){
+        
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.filteredPhoto.count
+
+        return viewModel.getCountOfPhotos()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImagesCollectionViewCell
-        cell.configureCell(photo: viewModel.filteredPhoto[indexPath.row])
-
-        return cell
+        cell.configureCell(photo: viewModel.getDataOfPhotos()[indexPath.row])
         
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -111,6 +118,7 @@ extension AlbumsDetailsViewController : UICollectionViewDelegate , UICollectionV
 
 //MARK: SEARCHBAR DELEGATE
 extension AlbumsDetailsViewController : UISearchBarDelegate {
+  
     func searchBarConfigure(){
         searchController.loadViewIfNeeded()
         searchController.obscuresBackgroundDuringPresentation = false

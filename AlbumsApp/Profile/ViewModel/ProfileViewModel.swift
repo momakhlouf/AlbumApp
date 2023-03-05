@@ -10,11 +10,10 @@ import Combine
 import Moya
 import CombineMoya
 
-class UsersViewModel : ObservableObject {
+class ProfileViewModel : ObservableObject {
     
     let provider = MoyaProvider<NetworkClient>()
     
-    // TODO: must be private
     @Published  var user : UserModel? = nil
     @Published  var albums : [AlbumModel] = []
     let errorPublisher = PassthroughSubject<Error, Never>()
@@ -24,6 +23,17 @@ class UsersViewModel : ObservableObject {
     func viewDidLoad() {
         getUser()
     }
+    
+    
+    //MARK: TABLE VIEW
+    func getCountOfAlbum() -> Int{
+        return albums.count
+    }
+    
+    func getDataOfAlbum() -> [AlbumModel]{
+        return albums
+    }
+    
     
     //MARK: GET USER
     func getUser(){
@@ -62,6 +72,5 @@ class UsersViewModel : ObservableObject {
             })
             .store(in: &cancellables)
     }
-    
 }
 

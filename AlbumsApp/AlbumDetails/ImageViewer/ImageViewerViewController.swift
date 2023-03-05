@@ -21,8 +21,6 @@ class ImageViewerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         albumImage.kf.setImage(with: URL(string: imageUrl ))
         setShareButton()
     }

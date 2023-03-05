@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var userView: UIView!
     
-    let viewModel: UsersViewModel
+    let viewModel: ProfileViewModel
     var cancellable = Set<AnyCancellable>()
 
     @IBOutlet weak var userName: UILabel!
@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var albumTableView: UITableView!
 
-    public init(viewModel: UsersViewModel) {
+    public init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -82,21 +82,17 @@ private extension ProfileViewController {
 }
 
 
-
 //MARK: USER ALBUMS TABLEVIEW DELEGATE & DATA SOURCE
 extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: make func to return the count
-        return viewModel.albums.count
+            return  viewModel.getCountOfAlbum()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = albumTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumsTableViewCell
         cell.selectionStyle = .none
-        //TODO: make func to return current item
-        viewModel.$albums
-            .sink { albums  in cell.configureCell(with: albums[indexPath.row]) }
-            .store(in: &cancellable)
+        cell.configureCell(with: viewModel.getDataOfAlbum()[indexPath.row])
+    
         return cell
     }
 

@@ -26,7 +26,6 @@ class AlbumsTableViewCell: UITableViewCell {
     
     func configureCell(with album : AlbumModel){
         albumName.text = album.title
-        print(album.title)
     }
 }
 
