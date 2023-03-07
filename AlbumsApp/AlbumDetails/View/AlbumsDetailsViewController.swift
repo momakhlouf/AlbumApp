@@ -13,6 +13,8 @@ import Kingfisher
 class AlbumsDetailsViewController: UIViewController {
     
      
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
     var albumId : Int = 0
@@ -37,18 +39,17 @@ class AlbumsDetailsViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Albums"
   
+        emptyView.isHidden = true
         searchBarConfigure()
         setupViewModelBindings()
         setupCollectionView()
         viewModel.getPhotos()
+       // viewModel.isLoading = true
     }
 }
 
 
-func setUpEmptyView(){
-    
-  
-}
+
 
 //MARK: Configurations
 private extension AlbumsDetailsViewController {
@@ -88,17 +89,40 @@ private extension AlbumsDetailsViewController {
                 self?.showAlert(title: "error", message: error.localizedDescription)
             }
             .store(in: &cancellable)
+        
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.indicator.startAnimating()
+                    self?.imagesCollectionView.isHidden = true
+                }else{
+                    self?.indicator.stopAnimating()
+                    self?.indicator.hidesWhenStopped = true
+                    self?.imagesCollectionView.isHidden = false
+                }
+            }
+            .store(in: &cancellable)
+        
+        
+        viewModel.$showEmptyView
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] showEmptyView in
+                if showEmptyView {
+                    self?.emptyView.isHidden = false
+                }else{
+                    self?.emptyView.isHidden = true
+                }
+            }
+            .store(in: &cancellable)
     }
 }
 
 
 //MARK: PHOTOS COLLECTION View
 extension AlbumsDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
-    func emptyCollectionView(){
-        
-    }
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return viewModel.getCountOfPhotos()
     }
     
@@ -138,6 +162,7 @@ extension AlbumsDetailsViewController : UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         viewModel.updateSearch(text: "")
+        viewModel.showEmptyView = false
     }
 }
 
@@ -147,6 +172,5 @@ extension AlbumsDetailsViewController : UICollectionViewDelegateFlowLayout {
     {
         return CGSize(width: (collectionView.frame.width  / 3) - 6, height: (collectionView.frame.width  / 3) - 6)
     }
-    
 }
 

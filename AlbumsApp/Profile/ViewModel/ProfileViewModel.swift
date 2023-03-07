@@ -14,8 +14,9 @@ class ProfileViewModel : ObservableObject {
     
     let provider = MoyaProvider<NetworkClient>()
     
-    @Published  var user : UserModel? = nil
-    @Published  var albums : [AlbumModel] = []
+    @Published var user : UserModel? = nil
+    @Published var albums : [AlbumModel] = []
+    @Published var isLoading : Bool = false
     let errorPublisher = PassthroughSubject<Error, Never>()
     
     var cancellables = Set<AnyCancellable>()
@@ -37,11 +38,13 @@ class ProfileViewModel : ObservableObject {
     
     //MARK: GET USER
     func getUser(){
+        isLoading = true
         provider.requestPublisher(.getUsers)
             .subscribe(on: DispatchQueue.global())
             .tryMap { $0.data }
             .decode(type: [UserModel].self, decoder: JSONDecoder())
             .sink(receiveCompletion: {[weak self] completion in
+                self?.isLoading = false
                 switch completion {
                 case .finished : break
                 case .failure(let error) :

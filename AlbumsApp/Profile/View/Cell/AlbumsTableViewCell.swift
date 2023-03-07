@@ -15,8 +15,9 @@ class AlbumsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // setView()
-        cellView.makeShadow()
-        cellView.layer.cornerRadius = 10
+      //  cellView.makeShadow()
+        cellView.round()
+        cellView.addBorder(color: .label, width: 1)
         // Initialization code
     }
     

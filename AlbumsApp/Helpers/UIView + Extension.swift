@@ -19,4 +19,14 @@ extension UIView{
         layer.shadowColor = UIColor.gray.cgColor
         layer.masksToBounds = false
     }
+    
+    func round(_ radius : CGFloat = 10){
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+    }
+    
+    func addBorder(color : UIColor , width : CGFloat){
+        self.layer.borderWidth = width
+        self.layer.borderColor = color.cgColor
+    }
 }

@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="AlbumsApp" customModuleProvider="target">
             <connections>
                 <outlet property="albumTableView" destination="KE9-U6-ju4" id="gPI-jD-mH1"/>
+                <outlet property="indicator" destination="DEZ-yT-hAY" id="u6G-g0-JoM"/>
                 <outlet property="userAddress" destination="Dcl-5H-pod" id="dB6-cY-5Rm"/>
                 <outlet property="userName" destination="qdx-Wm-k3y" id="2xr-va-zEi"/>
                 <outlet property="userView" destination="Dh2-cf-hRr" id="PsB-yh-wTB"/>
@@ -38,8 +38,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="qdx-Wm-k3y">
                                             <rect key="frame" x="23.666666666666657" y="25" width="337.33333333333337" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -57,8 +56,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dcl-5H-pod">
                                             <rect key="frame" x="28.333333333333343" y="0.0" width="332.66666666666663" height="44"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -75,7 +73,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" name="view"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
                         <constraint firstItem="YEz-lf-71a" firstAttribute="leading" secondItem="Dh2-cf-hRr" secondAttribute="leading" constant="8" id="HQA-b0-med"/>
                         <constraint firstItem="YEz-lf-71a" firstAttribute="top" secondItem="Dh2-cf-hRr" secondAttribute="top" constant="8" id="QNM-Ew-Ye1"/>
@@ -90,13 +88,18 @@
                         <constraint firstAttribute="height" constant="623" id="CLj-Ff-YaQ"/>
                     </constraints>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="DEZ-yT-hAY">
+                    <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="KE9-U6-ju4" firstAttribute="top" secondItem="Dh2-cf-hRr" secondAttribute="bottom" constant="8" id="8YB-OE-ic9"/>
+                <constraint firstItem="DEZ-yT-hAY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BFX-XX-03d"/>
                 <constraint firstItem="Dh2-cf-hRr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="D8c-DS-Qu4"/>
                 <constraint firstItem="KE9-U6-ju4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="MlO-Lg-xQc"/>
+                <constraint firstItem="DEZ-yT-hAY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vxu-5N-wHJ"/>
                 <constraint firstItem="KE9-U6-ju4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZMc-9m-1bt"/>
                 <constraint firstItem="Dh2-cf-hRr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="o55-GY-Sxj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dh2-cf-hRr" secondAttribute="trailing" constant="8" id="pBU-WT-tu4"/>
@@ -107,11 +110,11 @@
     <resources>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <namedColor name="view">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

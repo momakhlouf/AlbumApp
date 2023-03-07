@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var userView: UIView!
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     let viewModel: ProfileViewModel
     var cancellable = Set<AnyCancellable>()
 
@@ -35,10 +36,12 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         self.title = "Profile"
-        userView.makeShadow()
+        userView.addBorder(color: .label, width: 2)
         setupTableView()
         setupViewModelBindings()
         viewModel.viewDidLoad()
+        viewModel.isLoading = true
+
     }
 }
 
@@ -73,6 +76,21 @@ private extension ProfileViewController {
                 self?.showAlert(title: "error", message: error.localizedDescription)
             }
             .store(in: &cancellable)
+        
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.indicator.startAnimating()
+                    self?.albumTableView.isHidden = true
+                } else {
+                    
+                    self?.indicator.stopAnimating()
+                    self?.indicator.hidesWhenStopped = true
+                    self?.albumTableView.isHidden = false
+                }
+            }
+            .store(in: &cancellable)
     }
 
     func updateUserView(user: UserModel) {
@@ -97,7 +115,7 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let album = viewModel.albums[indexPath.row].id ?? 0
+        let album = viewModel.getDataOfAlbum()[indexPath.row].id ?? 0
         let albumDetailsVC = AppRouter.createAlbumsScene(albumId: album)
         navigationController?.pushViewController(albumDetailsVC, animated: true)
     
